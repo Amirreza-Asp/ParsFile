@@ -1,0 +1,50 @@
+﻿<link rel="stylesheet" href="~/css/account/login-register.css"/>
+
+@model ParsFile.Domain.Dtos.Account.LoginRegisterDto
+
+<section class="login-register mb-5 d-flex justify-content-center align-items-center">
+    <div class="login-register-container">
+        <div class="switcher-parent">
+            <div class="switcher">
+                <p class="switcher-login text-white switcher-btn active" id="switch-to-login">ورود</p>
+                <p class="switcher-signin text-white" id="switch-to-register">ثبت نام</p>
+            </div>
+        </div>
+        <!-- login -->
+        <div class="container--login">
+            
+            <form asp-action="Login" class="container-fluid">
+                <h2 class="mt-4 py-2 text-white">ورود</h2>
+                <hr>
+                <input type="email" asp-for="Email" placeholder="نام کاربری" class="my-3" />
+                <input type="password" asp-for="Password" placeholder="رمز عبور" class="mt-3" />
+                <a href="#" class="forget-password">فراموشی رمز عبور</a>
+                <br/>
+                <div class="text-center">
+                    <button class="btn btn-primary w-50 mt-4">ثبت</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Sign In -->
+        <div class="container--signin">
+			
+            <form asp-action="Register" class="container-fluid">
+                <h2 class="mt-4 py-2 text-white">ایجاد حساب</h2>
+                <hr>
+                <input type="text" asp-for="FirstName" placeholder="نام" class=" my-2 mt-3" />
+                <input type="text" asp-for="LastName" placeholder="نام خانوادگی" class=" my-2 mt-3" />
+                <input type="text" asp-for="Email" placeholder="نام کاربری" class=" my-2 mt-3" />
+                <input type="password" asp-for="Password" placeholder="رمز عبور" class=" my-2 " />
+                <input type="password" asp-for="PasswordConfirmed" placeholder="تکرار رمز عبور" class=" my-2 " />
+                <div class="text-center">
+                    <button class="btn btn-primary w-50 mt-3">عضویت</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/account/login-register.js"></script>
+}

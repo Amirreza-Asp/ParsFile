@@ -1,0 +1,33 @@
+﻿@model ParsFile.Domain.Dtos.Account.AccountInfoDto
+
+@{
+    Layout = "../../Areas/Admin/Views/Shared/_AdminLayout";
+}
+<section class="d-flex justify-content-center mt-5">
+    <div class="border p-4 col-lg-9 col-md-10 col-sm-11 col-12 br-3 bg-dark-to-light">
+        <h2 class="text-info">@Model.FullName</h2>
+        <hr class="bg-white"/>
+        <div class="p-3 pt-1 text-white">
+            <p class="">@Model.UserName</p>
+            @if (Model.EmailConfirmed)
+            {
+                <p>ایمیل تایید شده است</p>
+            }
+            else
+            {
+                <p>ایمیل تایید نشده است</p>
+            }
+            @if (!Model.TwoFactorEnabled)
+            {
+                <a asp-action="TwoFactorEnabled" class="btn btn-warning text-white">ورود یک مرحله ای</a>
+            }
+            else
+            {
+                <a asp-action="TwoFactorEnabled" class="btn btn-success">ورود دو مرحله ای</a>
+            }
+            <div>
+                <a asp-area="" asp-action="LogOut" asp-controller="Account" class="btn btn-secondary mt-3">خروج</a>
+            </div>
+        </div>
+</div>
+</section>

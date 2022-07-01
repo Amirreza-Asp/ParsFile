@@ -1,0 +1,52 @@
+﻿@using ParsFile.Infrastructure.Helpers
+@model IEnumerable<ParsFile.Domain.Dtos.Content.File.FileDto>
+
+<section class="d-flex justify-content-center container">
+	<div class="border w-100 br-3 p-5 bg-dark-to-light">
+		<div class="d-flex justify-content-between">
+			<h2 class="text-white">فایل های شما</h2>
+			<div class="w-50 ps-5">
+				<a class="btn btn-success w-100" href="/Admin/File/Add">جدید</a>
+			</div>
+		</div>
+		<hr class="mb-5"/>
+		<div class="table-responsive">
+		<table class="table table-active table-dark table-bordered table-striped">
+			<thead>
+				<tr>
+					<th class="text-center">نام</th>
+					<th class="text-center">تاریخ ثبت</th>
+					<th class="text-center">تعداد دانلود</th>
+					<th class="text-center">تایید شده</th>
+					<th class="text-center"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach(var file in Model)
+				{
+					<tr>
+						<td class="text-center">@file.Name</td>
+						<td class="text-center">@file.CreateTime.ToShamsi()</td>
+						<td class="text-center">@file.Downloads</td>
+						<td class="text-center">
+							@if (file.Accepted)
+							 {
+								<i class="fa fa-check text-success fa-2x"></i>
+							 }
+							else
+							{
+								<i class="fa fa-window-close text-danger fa-2x"></i>
+							}
+						</td>
+						<td class="text-center">
+							<a class="btn btn-danger btn-sm" href="/Admin/File/Remove/@file.Id">
+								<i class="fa fa-trash-alt text-white"></i>
+							</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,202 @@
+﻿@using ParsFile.Application
+@using ParsFile.Application.Contracts.Repositories.Content
+@inject IBasketRepository _basketRepo
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-------------- bootstrap -------------->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css"
+          integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N"
+          crossorigin="anonymous" />
+
+    <!------------- font awesome ------------->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+
+    <!------------- toastr ------------->
+    <link href="~/lib/toastr.js/toastr.min.css" rel="stylesheet" />
+
+    <!------------ custome style ----------->
+    <link rel="stylesheet" href="~/css/adminArea/site.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <!------------ title ------------->
+    <title>Software Engineering</title>
+</head>
+<body>
+    <!---------------- nav -------------------->
+    <nav class="navbar navbar-expand-lg navbar-light" dir="rtl">
+        <button class="navbar-toggler ml-auto mb-2"
+                type="button"
+                data-target="#adminNavbar"
+                data-toggle="collapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="adminNavbar">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- top navbar -->
+                    <div class="col-12 bg-custom py-3 fixed-top navbar-top ml-auto">
+                        <div class="row align-items-center d-right">
+                            <div class="col-md-4 mb-2 mb-md-0">
+                                <h4 class="text-uppercase mb-0 p-0 navbar-title">
+                                    پارس فایل
+                                </h4>
+                            </div>
+                            <div class="col-md-5 col-lg-5 mb-3 mb-md-0">
+                                <form class="search-form" method="get" asp-area="Admin" asp-controller="File" asp-action="FilesList">
+                                    <input type="search"
+                                           autocomplete="off"
+                                           placeholder="جستجو..."
+                                           class="px-2 py-1 d-right search-input w-75"
+                                           name="filter"
+                                           id="" />
+                                    <button type="submit" class="p-1 px-2 rounded-circle search-submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="col-md-3 d-flex justify-content-end">
+                                <ul class="navbar-nav nav-icons">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <li class="nav-item me-3">
+                                            @{
+                                                int count = 0;
+                                                if (User.Identity.IsAuthenticated == true)
+                                                {
+                                                    count = _basketRepo.
+                                                    GetAll<String>(s => s.UserName == User.Identity.Name,
+                                                    select: s => s.UserName).Count();
+                                                }
+                                            }
+                                            <a asp-area="Admin" asp-controller="Basket" asp-action="Index" class="nav-link text-white">
+                                                &nbsp(@count)
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </a>
+                                        </li>
+                                    }
+                                    <li class="nav-item  me-3">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a href="/Admin/Wallet/index" class="nav-link text-white">
+                                                <i class="fas fa-wallet fa-lg"></i>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="/Account/Login" class="nav-link btn-login">
+                                                ورود
+                                            </a>
+                                        }
+                                    </li>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <li class="nav-item ml-md-auto">
+                                            <a href="/Account/Logout"
+                                           class="nav-link"
+                                           data-toggle="modal"
+                                           data-target="#sign-out">
+                                                <i class="fas fa-sign-out-alt rotate-180 text-danger fa-lg"></i>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end top navbar -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <button class="hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    
+    <section class="overlay">
+        <ul class="overlay-list">
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="overlay-item">
+                    <a href="/Admin/AdminHome/Index">مدیریت</a>
+            </li>
+            }
+            <li class="overlay-item">
+                <a href="/Account/Manage">پروفایل</a>
+            </li>
+            <li class="overlay-item">
+                <a href="/Admin/File/FilesList">جدیدترین ها</a>
+            </li>
+            <li class="overlay-item">
+                <a href="/Admin/File/Index">فایل های من</a>
+            </li>
+            <li class="overlay-item">
+                <a href="/Order/Index">فروش</a>
+            </li>
+            <li class="overlay-item">
+                <a href="/Admin/Buy/Index">خرید های من</a>
+            </li> 
+            <li class="overlay-item">
+                <a href="/Admin/Wallet/Withdrawals">درخواست</a>
+            </li>
+        </ul>
+    </section>
+
+    <!------------- main ------------>
+    <main role="main" dir="rtl">
+        <!------------- toastr notfications ------------>
+        <partial name="_NotficationsPartial" />
+        @RenderBody()
+    </main>
+
+
+    <!------------ footer ------------>
+    <footer>
+        <p class="footer-title"><span>پارس فایل</span> هر انچه که نیاز دارد</p>
+        <div class="footer_social">
+            <a href="#" class="footer_cosial--link">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="footer_cosial--link">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="footer_cosial--link">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="footer_cosial--link">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </footer>
+
+
+
+    <!--*************** Scripts *************-->
+    <!------------ jquery ------------->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <!----------- custom ----------->
+    <script src="~/js/adminArea/site.js"></script>
+    <script src="~/js/site.js"></script>
+
+    <!----------- bootstrap ----------->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

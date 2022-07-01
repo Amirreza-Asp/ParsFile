@@ -1,0 +1,75 @@
+﻿<link rel="stylesheet" href="~/css/adminArea/wallet/index.css"/>
+@model ParsFile.Domain.Entities.Identity.Wallet
+
+<section class="d-flex justify-content-center my-3 ">
+	<div class="p-5 br-3 bg-dark-to-light w-100 text-white">
+		<div class="d-flex justify-content-start">
+			<h3 class="text-info">کیف پول</h3>
+		</div>
+		<hr />
+		<div class="px-1 pt-3">
+			<p class="h4">موجودی شما  : @Model.Cash.ToString("#,0")</p>
+			<div class="d-flex pt-3">
+                <button class="btn btn-success me-3" id="increase-cash" data-toggle="modal" data-target="#wallet-modal">افزایش موجودی</button>
+                <button class="btn btn-info" id="withdrawal" data-toggle="modal" data-target="#wallet-modal">برداشت از کیف پول</button>
+			</div>
+		</div>
+	</div>
+</section>
+
+@******** modal **********@
+<div class="modal fade" id="wallet-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        <i class="fa fa-close"></i>
+                    </span>
+                </button>
+            </div>
+
+            <form id="wallet-form" method="post">
+            <div class="modal-body">
+                    <input type="text" class="cash-input" min="0" placeholder="مبلغ مورد نظر" name="amount" />
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                    <button type="submit" id="btn-router" class="btn btn-info px-5" >ثبت</button>
+            </div>
+             </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        const btnIncreaseCash = document.querySelector("#increase-cash");
+        const btnWithdrawal = document.querySelector("#withdrawal");
+        const modalTitle = document.querySelector(".modal-title");
+        const walletForm = document.querySelector("#wallet-form");
+        const btnRouter = document.querySelector("#btn-router");
+
+btnIncreaseCash.addEventListener("click", () => {
+    modalTitle.innerHTML = "افزایش موجودی";
+    modalTitle.classList.add("text-success");
+    modalTitle.classList.remove("text-info");
+
+    walletForm.setAttribute("action", "IncreaseCash");
+
+    btnRouter.classList.remove("btn-info");
+    btnRouter.classList.add("btn-success");
+});
+
+btnWithdrawal.addEventListener("click", () => {
+    modalTitle.innerHTML = "برداشت از حساب";
+    modalTitle.classList.remove("text-success");
+    modalTitle.classList.add("text-info");
+
+            walletForm.setAttribute("action", "SendWithdrawalRequest");
+
+    btnRouter.classList.add("btn-info");
+    btnRouter.classList.remove("btn-success");
+});
+    </script>
+}

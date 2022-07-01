@@ -1,0 +1,67 @@
+﻿<link rel="stylesheet" href="~/css/adminArea/basket/index.css"/>
+@using ParsFile.Application
+@model IEnumerable<ParsFile.Domain.Entities.Content.Basket>
+
+<section class="d-flex justify-content-center my-3 ">
+	<div class="p-5 br-3 bg-dark-to-light w-100 text-white">
+		@if (Model.Count() > 0)
+		{
+		<div class="d-flex justify-content-start">
+			<h2 class="text-info">سبد خرید شما</h2>
+		</div>
+		<hr />
+		<div class="p-1">
+		
+				<ul class="basket-list">
+					@foreach (var basket in Model)
+					{
+						<li class="basket-item text-white d-flex my-4 justify-content-start p-3">
+
+							<img class="basket-img me-5" src="@SD.FileImagesPath@basket.File.Image" alt="@basket.File.Name">
+
+							<div class="d-flex flex-column justify-content-between">
+								<p class="h4">@basket.File.Name</p>
+								<p>قیمت  : @basket.File.Price.ToString("#,0")</p>
+								<a
+							asp-area="Admin"
+							asp-controller="Basket"
+							asp-action="Remove"
+							asp-route-id="@basket.Id"
+							class="btn btn-danger text-white" 
+							style="width:150px;">
+									<i class="fa fa-trash-alt"></i>
+								</a>
+							</div>
+
+						</li>
+						<hr />
+					}
+				</ul>
+				<p class="h4 mb-3 mt-4">
+					مجموع : 
+					<span class="text-warning">@Model.Sum(x=>x.File.Price).ToString("#,0")</span>
+				</p>
+				<form method="post" asp-area="Admin" asp-controller="Basket" asp-action="Buy">
+					<input name="totalPrice" value="@Model.Sum(x=>x.File.Price)"  hidden/>
+					<div class="d-flex">
+						<div class="me-3 h6">
+							درگاه پرداخت
+							<input name="payment" value="dargah" type="radio" checked/>
+						</div>
+						<div class="h6">
+							کیف پول
+							<input name="payment" value="wallet" type="radio"/>
+						</div>
+					</div>
+					<button class="btn btn-info mt-4" style="width:120px;" type="submit">خرید</button>
+				</form>
+			
+
+		</div>
+		}
+		else
+		{
+		<h3 class="text-warning">سبد خرید شما خالی است</h3>
+		}
+    </div>
+</section>

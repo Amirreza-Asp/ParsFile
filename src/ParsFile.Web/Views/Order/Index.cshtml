@@ -1,0 +1,66 @@
+﻿<link rel="stylesheet" href="~/css/adminArea/basket/index.css" />
+@model ParsFile.Domain.ViewModels.OrdersListVM
+@using ParsFile.Application
+
+@{
+	Layout = "../../Areas/Admin/Views/Shared/_AdminLayout";
+}
+
+<section class="d-flex justify-content-center mb-3 ">
+	<div class="p-5 br-3 bg-dark-to-light w-100 text-white">
+		@if (Model.TotalPrice > 0)
+		{
+		<div class="d-flex justify-content-start">
+			<h2 class="text-info">امار فروش ها</h2>
+		</div>
+		<hr />
+		<div class="p-1">
+
+			<table class="table table-bordered table-dark table-striped table-active">
+			<thead>
+				<tr>
+					<th class="text-center">نام</th>
+					<th class="text-center">سود فروش هر عدد</th>
+					<th class="text-center">تعداد فروش</th>
+					<th class="text-center"> سود کل </th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+
+				@foreach (var item in Model.Files)
+				{
+					<tr 
+						class="text-white" 
+					>
+					
+					<td class="text-center text-white">@item.Name</td>
+					<td class="text-center text-white">@item.Price.ToString("#,0")</td>
+					<td class="text-center text-white">@item.SaleCount.ToString("#,0")</td>
+								@{
+									double totalFileSale = item.Price * item.SaleCount;
+								}
+					<td class="text-center text-white">@totalFileSale.ToString("#,0")</td>
+					<td class="text-center text-white">
+						<a href="/Admin/File/Show/@item.Id" class="btn btn-info">
+							<i class="fa fa-eye"></i>	
+						</a>
+					</td>
+				
+					</tr>
+				}
+				
+				</tbody>
+			</table>
+			<div class="h3 mt-5 text-info text-shadow-dark">
+				جمع فروش : @Model.TotalPrice.ToString("#,0")
+			</div>
+			</div>
+			}
+			else
+			{
+				<h2 class="text-danger text-shadow-dark">شما هیچ فروشی نداشته اید</h2>
+			}
+			
+	</div>
+</section>

@@ -1,0 +1,22 @@
+﻿.dataTables_filter {
+    margin-bottom: 10px;
+    color: white;
+}
+
+.dataTables_filter > label{
+    color :white;
+}
+
+.dataTables_length>label{
+    color:white;
+}
+
+    .dataTables_length > label > select {
+        background: #111;
+        border: 1px solid #111;
+        color: white;
+        padding : 3px;
+        border-radius:2px;
+        cursor:pointer;
+        margin-right:10px;
+    }

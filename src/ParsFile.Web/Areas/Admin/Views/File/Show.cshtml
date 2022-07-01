@@ -1,0 +1,75 @@
+﻿@using ParsFile.Application
+@using ParsFile.Infrastructure.Helpers
+@using System.IO;
+@model ParsFile.Domain.Entities.Content.File
+@inject ParsFile.Application.Contracts.Repositories.Identity.IOrderDetailRepository _orderDetailRepo
+
+<section class="d-flex justify-content-center mt-4 ">
+	<div class="p-5 br-3 bg-dark-to-light w-100 text-white">
+		<div class="d-flex justify-content-start">
+			<h2 class="text-info">@Model.Name</h2>
+		</div>
+		<hr />
+		<div class="offset-2 col-8">
+			<img 
+				src="@SD.FileImagesPath@Model.Image" 
+				alt="@Model.Name"
+				 style="width:100%;height:50vh;object-fit:contain;object-position:center;background-color:transparent;"
+				class="img-fluid " 
+				/>
+		</div>
+		<hr />
+		<div class="px-3 my-2 text-white">
+			<p class="lead my-4">
+				توضیحات : <span style="font-size:15px;opacity:.8;">
+					@Model.Description
+				</span> 
+			</p>
+			<p>
+			  تعداد دانلودها :	@Model.Downloads
+			</p>
+			
+			<div>
+				@{
+					String path = $"{SD.UserFilesPath}{Model.Path}";
+					double size = (double) File.ReadAllBytes($"wwwroot/{path}").Length / 1000;
+					String showSize = "";
+					if(size < 1000)
+						{
+							showSize = $"{size.ToString(".0")} کیلوبایت";
+						}
+					else if(size < 1000000)
+						{
+							showSize = $"{((double) size / 1000).ToString(".0")} مگابایت";
+						}
+					else
+						{
+							showSize = $"{((double)size / 1000000).ToString(".0")} گیگابایت";
+						}
+					}
+				<p>حجم : @showSize</p>
+				@if (Model.Price > 0 && !User.IsInRole("Admin") && !_orderDetailRepo.Exists(Model.Id))
+			   {
+					<a 
+						asp-area="Admin" 
+						asp-controller="Basket" 
+						asp-action="Add" 
+						asp-route-fileId="@Model.Id" 
+						asp-route-callBack="/Admin/File/Show/@Model.Id"
+						class="btn btn-info text-white px-4 my-2"
+					>
+					خرید : @Model.Price.ToString("#,0")
+					</a>
+				}
+				else{					
+					<a href="@path" class="btn btn-info text-white px-5 my-2">دانلود </a>
+			   }
+			</div>
+			<div class="d-flex justify-content-end">
+				<span class="text-muted" style="font-size:13px;">
+					@Model.CreateTime.ToShamsi()
+				</span>
+			</div>
+		</div>
+	</div>
+</section>

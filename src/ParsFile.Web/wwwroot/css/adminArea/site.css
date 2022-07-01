@@ -1,0 +1,240 @@
+﻿body {
+    font-family: "Montserrat", sans-serif;
+    background: #eee;
+    overflow-x: hidden;
+}
+
+.br-1{
+    border-radius:3px;
+}
+
+.br-2{
+    border-radius:5px;
+}
+
+.br-3{
+    border-radius:7px;
+}
+
+.br-4{
+    border-radius:9px;
+}
+
+.br-5{
+    border-radius:12px;
+}
+
+.bg-dark-to-light {
+    background: rgb(45, 54, 66);
+    background: linear-gradient(rgb(45, 54, 66), rgb(193, 193, 193));
+}
+
+.btn-purple {
+    background: rgba(109, 27, 109, .8);
+    color: white;
+    transition:all .2s linear; 
+}
+
+    .btn-purple:hover,
+    .btn-purple:active {
+        background: rgba(109, 27, 109, 1);
+    }
+
+.backward {
+    transform:rotateY(180deg) ;
+}
+
+.text-pink {
+    color: #FF06B7;
+}
+
+.btn-pink {
+    background-color: #FF06B7;
+    color : black;
+    
+}
+
+    .btn-pink:hover,
+    .btn-pink:active {
+        background-color: #C9008F
+        
+    }
+
+.text-shadow-dark{
+    text-shadow:2px 2px 5px rgba(0,0,0,.5);
+}
+/* --------- sidebar ----------- */
+.sidebar {
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url(./../../file/images/gonzalo-kenny-N7JURotKHZU-unsplash.jpg) center center / cover;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    box-shadow: 5px 0 2px black;
+}
+
+.text-shadow-white {
+    text-shadow: 0 0 0.5rem white;
+}
+
+.sidebar-link {
+    border-radius: 0.5rem;
+    transition: all 0.4s;
+}
+
+    .sidebar-link:hover,
+    .sidebar-link:active {
+        background-color: rgb(151, 151, 151, 0.7);
+    }
+
+.current {
+    background-color: rgba(109, 27, 109, 0.5);
+    border-radius: 0.5rem;
+    box-shadow: 2px 5px 10px rgba(109, 27, 109, 0.5);
+    transition: all 0.4s;
+}
+
+    .current:hover {
+        background-color: rgba(109, 27, 109, 1);
+    }
+
+/* ---------- end sidebar ------------ */
+/* ---------- top-nav ------------ */
+.bg-custom {
+    background: rgb(0, 0, 0);
+    box-shadow: 0 5px 2px black;
+}
+
+input[type="search"] {
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    transition: all 0.4s;
+}
+
+    input[type="search"]:focus {
+        box-shadow: none;
+        outline: none;
+        border-bottom: 2px solid rgba(255, 255, 255, 1);
+    }
+
+nav button[type="submit"] {
+    color: rgba(109, 27, 109, 1);
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: inset 0 0 10px rgba(109, 27, 109, 1), 0 0 10px rgba(109, 27, 109, 1);
+}
+
+.navbar-title {
+    background: linear-gradient( 155deg, rgba(109, 27, 109, 1) 58%, black 60%, rgba(109, 27, 109, 1) 61% );
+    background-clip: text;
+    display: inline-block;
+    color: transparent;
+    position: relative;
+}
+
+    .navbar-title::before {
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 100%;
+        background-color: black;
+        right: 40%;
+        top: 0;
+        filter: blur(1.5px);
+    }
+
+.nav-icons{
+    list-style:none;
+}
+
+.nav-icon {
+    position: relative;
+}
+
+    .nav-icon::before {
+        content: "";
+        right: 10%;
+        top: 10%;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgb(170, 0, 113);
+        position: absolute;
+        animation: notfication 3s linear infinite;
+    }
+
+@keyframes notfication {
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.rotate-180{
+    transform:rotate(180deg);
+}
+/* ---------- end top-nav ------------ */
+
+
+
+@media screen and (max-width: 1000px) and (min-width: 768px) {
+
+}
+
+@media screen and (max-width: 992px) {
+
+}
+
+
+
+@media screen and (max-width : 768px){
+
+}
+
+/*************** navbar search part *************/
+
+.search-form{
+    position:relative;
+}
+
+.search-option {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    width: 50%;
+    text-decoration: none;
+    background: rgba(109, 27, 109, 1);
+    border-bottom: 1px solid gray;
+    padding: 5px;
+    direction: ltr;
+    color: white;
+    box-shadow: inset 0 0 55px 12px black;
+    border-radius: 2px;
+    z-index:1;
+    transition: all .2s linear;
+}
+
+.search-option:hover,
+.search-option:active{
+    transform : scale(1.05);
+}
+
+.search-option > img{
+    width:30px;
+    height:30px;
+    object-fit:contain;
+    object-position:center;
+    box-shadow:0 0 5px rgba(255,255,255,.4);
+
+}
+
+.search-option > p{
+    direction : rtl;
+}

@@ -1,0 +1,97 @@
+﻿<link rel="stylesheet" href="~/css/adminArea/index.css"/>
+
+<div class="d-flex justify-content-center mb-3 ">
+	<div class="p-5 br-3 bg-dark-to-light w-100 text-white">
+<!---------------- cards -------------------->
+<section class="container-fluid">
+            <div class="row pt-md-3 px-2 mt-lg-3 mb-5">
+              <div class="col-xl-3 col-lg-6 col-sm-6 mx-auto p-2">
+                <div class="card card-common">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <i class="fas fa-shopping-cart fa-3x text-warning"></i>
+                      <div class="d-flex flex-column align-items-start w-100 mx-3 " >
+                        <h5>فروش</h5>
+                                    <h3 class="Sales align-self-end">$<span></span></h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer card-update text-secondary" id="Sales">
+                    <i class="fas fa-sync mr-3"></i>
+                    <span>بروزرسانی</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-sm-6 mx-auto p-2">
+                <div class="card card-common">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <i class="fas fa-money-bill-alt fa-3x text-success"></i>
+                                <div class="d-flex flex-column align-items-start w-100 mx-3">
+                        <h5>فروش امروز</h5>
+                                    <h3 class="TodaySales align-self-end">$<span></span></h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer  text-secondary card-update" id="TodaySales">
+                    <i class="fas fa-sync mr-3"></i>
+                    <span>بروزرسانی</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-sm-6 mx-auto p-2">
+                <div class="card card-common">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <i class="fas fa-users fa-3x text-info"></i>
+                                <div class="d-flex flex-column align-items-start w-100 mx-3">
+                        <h5>کاربران</h5>
+                                    <h3 class="UserCounts align-self-end"><span></span></h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer card-update text-secondary" id="UserCounts">
+                    <i class="fas fa-sync mr-3"></i>
+                    <span>بروزرسانی</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-sm-6 mx-auto p-2">
+                <div class="card card-common">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <i class="fas fa-chart-line fa-3x text-danger"></i>
+                                <div class="d-flex flex-column align-items-start w-100 mx-3">
+                        <h5>بهترین فروش</h5>
+                        <h3  class="BestSale align-self-end">
+                            $<span></span>
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer card-update text-secondary" id="BestSale">
+                    <i class="fas fa-sync mr-3"></i>
+                    <span>بروزرسانی</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+</section>
+ <!---------------- end cards -------------------->
+<section class="container-fluid">
+    <div class="row my-3 ">
+         <div class=" col-12 p-3 br-5  bg-chart">
+            <canvas id="grouping-sales" style="width:100%;"></canvas>
+        </div>
+   
+    </div>
+</section>
+    </div>
+ </div>
+
+ @section Scripts{
+     @*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>*@
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+     <script src="~/js/adminArea/adminHome/index.js"></script>
+ }

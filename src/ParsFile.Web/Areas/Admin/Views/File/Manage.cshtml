@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ParsFile.Domain.Dtos.Content.File.ShowFilesDto>
+
+<link rel="stylesheet" href="~/css/adminArea/file/manage.css"/>
+
+<section class="d-flex justify-content-center p-3 ">
+    <div class="border manage w-100 p-4 col-lg-9 col-md-10 col-sm-11 col-12 br-3 bg-dark-to-light">
+		<div class="d-flex justify-content-start">
+			<h2 class="text-info">مدیریت فایل ها</h2>
+		</div>
+		<hr />
+        <div class="table-responsive-md">
+        <table id="tblData" class="table table-striped table-dark table-bordered">
+            <thead>
+                <tr style="background-color:aliceblue">
+                    <th class="text-center text-white">نام فایل</th>
+                    <th class="text-center text-white">فرستنده</th>
+                    <th class="text-center text-white">تاریخ</th>
+                    <th class="text-center text-white">قیمت</th>
+                    <th class="text-center text-white">تعداد دانلود ها</th>
+                    <th class="text-center text-white">پذیرفته شده</th>
+                    <th class="text-center text-white">درخواست حذف</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+
+        </div>
+	</div>
+</section>
+
+@section Scripts{
+	<script src="~/js/adminArea/file/manage.js"></script>
+}

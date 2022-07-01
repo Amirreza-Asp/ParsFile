@@ -1,0 +1,53 @@
+﻿@model ParsFile.Domain.Dtos.Content.File.AddFileDto
+
+<section class="d-flex justify-content-center mt-4 ">
+	<div class="border p-4 col-lg-9 col-md-10 col-sm-11 col-12 br-3 bg-dark-to-light">
+		<div class="d-flex justify-content-start">
+			<h2 class="text-success">افزودن فایل</h2>
+		</div>
+		<hr />
+		<form class="form" enctype="multipart/form-data" method="post" >
+		<div class="row py-2">
+			<label class="col-4 ps-5 text-white" asp-for="Name"></label>
+			<div class="col-8">
+				<input asp-for="Name" class="form-control" />
+			</div>
+		</div>
+		<div class="row py-2">
+			<label class="col-4 ps-5 text-white" asp-for="Price"></label>
+			<div class="col-8">
+				<input asp-for="Price" class="form-control" />
+			</div>
+		</div>
+		<div class="row py-2">
+				<label class="col-4 ps-5 text-white" asp-for="Description"></label>
+			<div class="col-8">
+				<textarea asp-for="Description" class="form-control" rows="3"></textarea>
+			</div>
+		</div>
+			<div class="row py-2">
+				<label class="col-4 ps-5 text-white">دسته بندی</label>
+			<div class="col-8">
+				<select asp-for="CategoryId" class="form-control" asp-items="Model.Categories">
+						<option selected disabled>... انتخاب کنید ...</option>
+				</select>
+			</div>
+		</div>
+		<div class="row py-2">
+				<label class="col-4 ps-5 text-white" asp-for="Path"></label>
+			<div class="col-8">
+				<input asp-for="Path" type="file" class="form-control" />
+			</div>
+		</div>
+		<div class="row py-2">
+				<label class="col-4 ps-5 text-white" asp-for="Image"></label>
+			<div class="col-8">
+				<input asp-for="Image" type="file" class="form-control " />
+			</div>
+		</div>
+		<div class="text-center pt-4 pb-2">
+			<input  class="btn btn-success w-50 text-white" type="submit" value="ارسال"/>
+		</div>
+	</form>
+	</div>
+</section>

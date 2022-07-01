@@ -1,0 +1,37 @@
+﻿<link rel="stylesheet" href="~/css/adminArea/basket/index.css" />
+@model IEnumerable<ParsFile.Domain.Entities.Content.File>
+@using ParsFile.Application
+
+<section class="d-flex justify-content-center mb-3 ">
+	<div class="p-5 br-3 bg-dark-to-light w-100 text-white">
+		<div class="d-flex justify-content-start">
+			<h2 class="text-pink">خرید های شما</h2>
+		</div>
+		<hr />
+		<div class="p-1">
+			<ul class="basket-list">
+				@foreach (var item in Model)
+				{
+					<li class="basket-item text-white d-flex my-4 justify-content-start p-3">
+					
+					<img class="basket-img me-5" src="@SD.FileImagesPath@item.Image" alt="@item.Name">
+						
+					<div class="d-flex flex-column justify-content-between">
+						<p class="h4">@item.Name</p>
+						<a
+							asp-area="Admin"
+							asp-controller="File"
+							asp-action="Show"
+							asp-route-id="@item.Id"
+							class="btn btn-pink text-white" 
+							style="width:150px;">
+								جزییات
+						</a>
+					</div>
+				
+					</li>
+					<hr />
+				}
+			</ul>
+	</div>
+</section>

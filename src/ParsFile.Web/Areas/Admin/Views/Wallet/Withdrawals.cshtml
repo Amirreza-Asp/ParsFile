@@ -1,0 +1,89 @@
+﻿@model IEnumerable<ParsFile.Domain.Entities.Identity.Withdrawal>
+@using ParsFile.Infrastructure.Helpers
+
+<section class="d-flex justify-content-center ">
+	<div class="border p-4  br-3 bg-dark-to-light w-100">
+		<div class="d-flex justify-content-start">
+			<p class="h2 text-warning">درخواست ها</p>
+		</div>
+		<hr />
+		<div class="p-1 mt-4">
+			<div class="table-responsive">
+				<table class="table table-dark table-striped  table-bordered table-active">
+					<thead>
+						<tr>
+							@if (User.IsInRole("Admin"))
+							{
+								<th class="text-center">نام</th>
+								<th class="text-center">نام کاربری</th>
+							}
+							<th class="text-center">مبلغ درخواستی</th>
+							<th class="text-center">تاریخ ارسال</th>
+							<th class="text-center">تاریخ جواب</th>
+							<th class="text-center">پرداخت</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach(var item in Model){
+							<tr>
+								@if (User.IsInRole("Admin"))
+								{
+									<td class="text-center">@item.Wallet.User.FirstName @item.Wallet.User.LastName</td>
+									<td class="text-center">@item.Wallet.UserName</td>
+								}
+								<td class="text-center">@item.Amount.ToString("#,0")</td>
+								<td class="text-center">@item.RequestTime?.ToShamsi()</td>
+								@if (item.AcceptTime != null)
+									{
+									<td class="text-center">
+										 @item.AcceptTime?.ToShamsi()
+									</td>
+									}
+								else{
+										<td class="text-center text-muted">در حال بررسی</td>
+									}
+
+								@if (item.AcceptTime==null && User.IsInRole("Admin"))
+								{
+									<td class="text-center">
+										<a class="btn btn-success" 
+											asp-area="Admin" 
+											asp-controller="Wallet" 
+											asp-action="SubmitWithdrawal"
+											asp-route-id="@item.Id"
+											asp-route-response="true">
+											<i class="fa fa-check"></i>
+										</a>
+										<a class="btn btn-danger" 
+											asp-area="Admin" 
+											asp-controller="Wallet" 
+											asp-action="SubmitWithdrawal"
+											asp-route-id="@item.Id",
+											asp-route-response="false"
+										>
+											<i class="fa fa-close"></i>
+										</a>
+									</td>
+								}
+								else if (item.AcceptTime != null)
+								{
+									String mood = item.Accept ? "success" : "danger";
+									String icon = item.Accept ? "fa fa-check" : "fa fa-close";
+									<td class="text-center">
+										<div class="badge p-2 bg-@mood" style="border-radius:50%;width:40px;height:40px;position:relative;">
+											<i class="@icon fa-lg" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);"></i>
+										</div>
+									</td>
+								}
+								else
+								{
+									<td class="text-center">مشخص نشده</td>
+								}
+							</tr>
+						}
+					</tbody>
+				</table>
+				</div>
+		</div>
+	</div>
+</section>

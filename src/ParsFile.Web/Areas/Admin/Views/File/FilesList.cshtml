@@ -1,0 +1,39 @@
+﻿<link rel="stylesheet" href="~/css/adminArea/file/filesList.css"/>
+@using ParsFile.Application
+@model IEnumerable<ParsFile.Domain.Entities.Content.File>
+
+<section class="d-flex justify-content-center my-4 ">
+	<div class="border p-4 br-3 bg-dark-to-light contain">
+		<ul class="d-flex justify-content-between flex-wrap files-list">
+			@foreach (var file in Model)
+			{
+				var words = @file.Description.Split(' ').Take(13);
+				String shortDesc = String.Join(' ', words);
+
+				<li class="m-3">
+					<div class="card" style="width: 18rem;">
+						<img class="card-img-top img-card" src="@SD.FileImagesPath@file.Image" alt="@file.Name">
+						<div class="card-body">
+							 <h5 class="card-title mb-3">@file.Name</h5>
+							 <div class="card-text text-center">
+								<p class="badge text-shadow-dark w-100 py-2 card-category">@file.Category.Name</p>
+							 </div>
+							 <p class="card-text text-muted">
+										@shortDesc
+								</p>
+							<p class="card-text">
+								قیمت : 
+								<span class="text-warning">
+									@file.Price.ToString("#,0")
+								</span>
+							</p>
+							<div class="text-center">
+								<a href="/Admin/File/Show/@file.Id" class="btn btn-outline-secondary w-75">جزییات</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			}
+		</ul>
+	</div>
+</section>

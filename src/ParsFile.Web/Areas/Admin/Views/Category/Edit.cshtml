@@ -1,0 +1,25 @@
+﻿@model ParsFile.Domain.Entities.Content.Category
+
+<section class="d-flex justify-content-center my-3 ">
+    <div class="p-5 br-3 col-lg-10 col-12 bg-dark-to-light text-white">
+        <div class="d-flex justify-content-start">
+            <h3 class="text-info">ویرایش دسته بندی</h3>
+        </div>
+        <hr />
+        <div class="p-1 mt-5">
+            <form method="post">
+                <input asp-for="Id" hidden/>
+                <div class="d-flex">
+                    <label class="text-center col-4">نام</label>
+                    <div class="col-8">
+                        <input class="form-control" asp-for="Name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="text-center w-100 mt-4">
+                    <button type="submit" class="btn btn-info text-white px-5">ثبت</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

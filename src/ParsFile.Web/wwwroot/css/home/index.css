@@ -1,0 +1,125 @@
+﻿
+
+/***************** intro ***************/
+.intro {
+   height: 100vh;
+    position: relative;
+    margin-top: -16px;
+    padding-inline:calc(10vw + 10px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+
+    .intro::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0,0,0,.5), rgba(255, 192, 203,.3)), url("../../file/images/header-1.jpg") center center / cover;
+        z-index: -1;
+    }
+
+
+.intro-content > h3 {
+    text-shadow: 1px 1px rgb(6, 6, 6);
+}
+
+
+/***************** recent files ***************/
+.recent-files {
+    box-shadow: 0 0 5px rgb(186, 186, 186);
+    background-color: rgba(128, 192, 255, 0.1);
+    padding: 10px;
+    padding-bottom: 0;
+
+}
+
+    .recent-files > ul {
+        padding-bottom: 10px;
+        overflow-x: auto;
+    }
+
+        .recent-files > ul > li {
+            box-shadow: 0 0 10px rgb(140, 140, 140);
+        }
+
+.card-img-top {
+    box-shadow: inset 0 0 5px rgb(177, 177, 177);
+}
+
+.btn-purple {
+    background-color: rgba(47, 27, 37, 0.8);
+}
+
+/**************** conatct us ****************/
+section#content {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+    section#content::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        filter: blur(3px);
+        background: linear-gradient(rgba(0, 0, 200, 0.2), rgba(0, 0, 100 , .2)), url("../../file/images/laura-davidson-SRhqHvdotuI-unsplash.jpg") center center / cover;
+    }
+
+.content_form {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+    .content_form > input,
+    .content_form > textarea {
+        color: white;
+        font-family: "Indie Flower", cursive;
+        font-size: 15px;
+        letter-spacing: 2px;
+        padding: 20px;
+        background: transparent;
+        border: none;
+        border-bottom: rgba(255, 255, 255, 0.4) solid 0.1rem;
+        direction: rtl;
+    }
+
+        .content_form > input::placeholder,
+        .content_form > textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .content_form > input:focus,
+        .content_form > textarea:focus {
+            outline: none;
+            /* border: none; */
+        }
+
+    .content_form textarea {
+        height: 30vh;
+    }
+
+.img-carousel{
+    height:200px;
+    object-fit:cover;
+    object-position:center;
+}
+
+
+
+input[type="submit"] {
+    border: none;
+    cursor: pointer;
+}

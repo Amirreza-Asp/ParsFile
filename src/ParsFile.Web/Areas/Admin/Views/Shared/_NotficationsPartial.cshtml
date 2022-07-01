@@ -1,0 +1,34 @@
+﻿@using ParsFile.Application
+
+@if (TempData[SD.SuccessMessage] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/toastr.js/toastr.min.js"></script>
+    <script type="text/javascript">
+          toastr.success('@TempData[SD.SuccessMessage]' , 'موفقیت')
+    </script>
+}
+@if (TempData[SD.ErrorMessage] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js" ></script>
+    <script src="~/lib/toastr.js/toastr.min.js" ></script>
+    <script type="text/javascript">
+        toastr.error('@TempData[SD.ErrorMessage]', 'مشکلی ایجاد شده')
+    </script>
+}
+@if (TempData[SD.WarningMessage] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/toastr.js/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.warning('@TempData[SD.WarningMessage]' , 'هشدار')
+    </script>
+}
+@if (TempData[SD.InfoMessage] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/toastr.js/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.info('@TempData[SD.InfoMessage]' , 'جزییات')
+    </script>
+}
