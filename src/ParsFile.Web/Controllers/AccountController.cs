@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ParsFile.Application;
@@ -23,6 +24,7 @@ namespace ParsFile.Web.Controllers
             _mapper = mapper;
         }
 
+        [Authorize]
         public IActionResult Manage()
         {
             var user = _userManager.FindByNameAsync(User.Identity?.Name).Result;
